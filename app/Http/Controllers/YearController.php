@@ -9,9 +9,9 @@ class YearController extends Controller
     public function get()
     {
         return response()->json([
-            '1º Ano',
-            '2º Ano',
-            '3º Ano',
+            'Primeiro Ano',
+            'Segundo Ano',
+            'Terceiro Ano',
         ]);
     }
 }

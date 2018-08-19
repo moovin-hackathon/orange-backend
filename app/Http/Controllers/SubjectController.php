@@ -20,22 +20,24 @@ class SubjectController extends Controller
      * Retorna disciplinas.
      * Caso seja passado um id, retorna apenas uma.
      *
-     * @param null $id
-     *
+     * @param string|null  $year
      * @return Model|Model[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|mixed|null
      */
     public function get($year = null)
     {
         if (!empty($year)) {
-            $subject = $this->subject
+            $subjects = $this->subject
                 ->select('subjects.*', 'questions.*')
                 ->leftJoin('questions', 'questions.subject_id', '=', 'subjects.id')
-                ->where('year', '=', utf8_encode($year))
+                ->where('year', '=', $year)
                 ->get();
 
-            return response()->json(
-                $subject
-            );
+            $subjectsTemp[null] = 'Escolha';
+            foreach ($subjects as &$subject) {
+                $subjectsTemp[$subject['id']] = $subject['name'];
+            }
+
+            return $subjectsTemp;
         }
 
         $subjects = $this->subject->get();

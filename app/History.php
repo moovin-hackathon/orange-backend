@@ -12,10 +12,9 @@ class History extends Model
      * @var array
      */
     protected $fillable = [
-        'userId',
-        'questionId',
-        'selectedAnswerId',
-        'currentDate',
+        'user_id',
+        'question_id',
+        'selectedAnswer_id',
     ];
 
     public function users()

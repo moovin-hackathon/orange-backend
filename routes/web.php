@@ -24,4 +24,6 @@ Route::group([
     Route::get('/subjects', 'SubjectController@get');
     Route::get('/subjects/{year}', 'SubjectController@get');
     Route::post('/subjects', 'SubjectController@post');
+
+    Route::get('/quiz', 'QuizController@get');
 });
