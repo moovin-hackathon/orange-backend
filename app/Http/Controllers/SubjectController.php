@@ -45,6 +45,8 @@ class SubjectController extends Controller
             $subject['questions'] = $subject->questions()->getResults();
         }
 
-        return $subjects;
+        return response()->json(
+            $subjects
+        );
     }
 }

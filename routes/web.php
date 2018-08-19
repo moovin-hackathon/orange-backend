@@ -16,10 +16,12 @@ Route::group([
 ], function ($router) {
 
     Route::get('/years', 'YearController@get');
+
     Route::get('/questions', 'QuestionController@get');
     Route::get('/questions/{id}', 'QuestionController@get');
 
     Route::get('/answers', 'AnswerController@get');
+    Route::get('/answers/{id}', 'AnswerController@get');
 
     Route::get('/subjects', 'SubjectController@get');
     Route::get('/subjects/{year}', 'SubjectController@get');
