@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group([
+    'middleware' => ['cors'],
+], function ($router) {
+
+    Route::get('/years', 'YearController@get');
+
+    Route::get('/subjects', 'SubjectController@get');
+    Route::post('/subjects', 'SubjectController@post');
 });
