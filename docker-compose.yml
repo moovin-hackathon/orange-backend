@@ -1,0 +1,30 @@
+
+# v2 syntax
+version: '2'
+
+# Named volumes
+volumes:
+  # MySQL Data
+  hello-world-laravel-mysql-data:
+    driver: local
+
+services:
+  # MySQL (5.7)
+  mysql:
+    image: ambientum/mysql:5.7
+    container_name: hello-world-laravel-mysql
+    volumes:
+      - hello-world-laravel-mysql-data:/var/lib/mysql
+    ports:
+      - "3360:3306"
+
+  # PHP (with Caddy)
+  app:
+    image: ambientum/php:7.1-caddy
+    container_name: hello-world-laravel-app
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "8080:8080"
+    links:
+      - mysql
