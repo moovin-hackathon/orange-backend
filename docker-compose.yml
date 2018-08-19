@@ -17,6 +17,8 @@ services:
       - hello-world-laravel-mysql-data:/var/lib/mysql
     ports:
       - "3360:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
 
   # PHP (with Caddy)
   app:
