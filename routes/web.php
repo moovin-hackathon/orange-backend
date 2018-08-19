@@ -20,5 +20,6 @@ Route::group([
     Route::get('/answers', 'AnswerController@get');
 
     Route::get('/subjects', 'SubjectController@get');
+    Route::get('/subjects/{id}', 'SubjectController@get');
     Route::post('/subjects', 'SubjectController@post');
 });
