@@ -47,7 +47,7 @@ class QuizController extends Controller
             $this->question = $this->question->limit($request->all()['totalQuestions']);
         }
 
-        $questions = $this->question->get();
+        $questions = $this->question->inRandomOrder()->get();
 
         foreach ($questions as &$question) {
             $question['subject'] = $question->subject()->getResults();
