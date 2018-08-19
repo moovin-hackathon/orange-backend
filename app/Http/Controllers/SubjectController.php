@@ -11,7 +11,7 @@ class SubjectController extends Controller
      */
     protected $subject;
 
-    public function __construct(Model $subject = null)
+    public function __construct(Model $subject)
     {
         $this->subject = $subject;
     }
@@ -24,14 +24,18 @@ class SubjectController extends Controller
      *
      * @return Model|Model[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|mixed|null
      */
-    public function get($id = null)
+    public function get($year = null)
     {
-        if (!empty($id)) {
-            $subject = $this->subject->find($id);
+        if (!empty($year)) {
+            $subject = $this->subject
+                ->select('subjects.*', 'questions.*')
+                ->leftJoin('questions', 'questions.subject_id', '=', 'subjects.id')
+                ->where('year', '=', utf8_encode($year))
+                ->get();
 
-            $subject['questions'] = $subject->questions()->getResults();
-
-            return $subject;
+            return response()->json(
+                $subject
+            );
         }
 
         $subjects = $this->subject->get();

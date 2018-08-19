@@ -20,11 +20,11 @@ class History extends Model
 
     public function users()
     {
-        return $this->hasMany('App\User');
+        return $this->belongsToMany('App\User');
     }
 
     public function answers()
     {
-        return $this->hasMany('App\Answer');
+        return $this->belongsToMany('App\Answer');
     }
 }
