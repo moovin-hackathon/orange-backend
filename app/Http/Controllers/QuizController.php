@@ -35,6 +35,18 @@ class QuizController extends Controller
             return;
         }
 
+        if (!empty($request->all()['year'])) {
+            $this->question = $this->question->where('year', '=', $request->all()['year']);
+        }
+
+        if (!empty($request->all()['subject'])) {
+            $this->question = $this->question->where('subject_id', '=', $request->all()['subject']);
+        }
+
+        if (!empty($request->all()['totalQuestions'])) {
+            $this->question = $this->question->limit($request->all()['totalQuestions']);
+        }
+
         $questions = $this->question->get();
 
         foreach ($questions as &$question) {

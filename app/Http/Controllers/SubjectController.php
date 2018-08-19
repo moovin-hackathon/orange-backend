@@ -27,9 +27,10 @@ class SubjectController extends Controller
     {
         if (!empty($year)) {
             $subjects = $this->subject
-                ->select('subjects.*', 'questions.*')
-                ->leftJoin('questions', 'questions.subject_id', '=', 'subjects.id')
+                ->select('subjects.id', 'subjects.name')
+                ->join('questions', 'questions.subject_id', '=', 'subjects.id')
                 ->where('year', '=', $year)
+                ->groupBy(['subjects.name', 'subjects.id'])
                 ->get();
 
             $subjectsTemp[null] = 'Escolha';
