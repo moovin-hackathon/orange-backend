@@ -15,6 +15,13 @@ class CreateHistoriesTable extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('question_id');
+            $table->unsignedInteger('selectedAnswer_id');
+            $table->date('currentDate');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('question_id')->references('id')->on('questions');
+            $table->foreign('selectedAnswer_id')->references('id')->on('answers');
             $table->timestamps();
         });
     }
