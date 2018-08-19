@@ -17,6 +17,8 @@ Route::group([
 
     Route::get('/years', 'YearController@get');
 
+    Route::get('/answers', 'AnswerController@get');
+
     Route::get('/subjects', 'SubjectController@get');
     Route::post('/subjects', 'SubjectController@post');
 });
